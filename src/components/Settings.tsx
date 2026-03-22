@@ -52,7 +52,7 @@ const TECHNOLOGIES = [
   },
 ];
 
-type SettingsTab = "providers" | "models" | "studio" | "about";
+type SettingsTab = "providers" | "models" | "studio" | "appearance" | "about";
 
 interface SettingsProps {
   onClose: () => void;
