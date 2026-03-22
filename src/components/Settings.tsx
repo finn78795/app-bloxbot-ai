@@ -3,6 +3,7 @@ import { relaunch } from "@tauri-apps/plugin-process";
 import { check } from "@tauri-apps/plugin-updater";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
+import { useDarkMode } from "@/hooks/useDarkMode";
 
 import { useStore } from "@/stores/opencode";
 import type { ModelInfo, ProviderInfo } from "@/types";
