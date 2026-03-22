@@ -178,6 +178,36 @@ function Settings({ onClose }: SettingsProps) {
             App
           </div>
           <button
+            onClick={() => setTab("appearance")}
+            className={`mx-1.5 flex items-center gap-2 rounded-md px-2.5 py-1.5 text-left text-xs transition-colors ${
+              tab === "appearance"
+                ? "bg-accent font-medium text-foreground"
+                : "text-muted-foreground hover:bg-accent hover:text-foreground"
+            }`}
+          >
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+            Appearance
+          </button>
+          <button
             onClick={() => setTab("about")}
             className={`mx-1.5 flex items-center gap-2 rounded-md px-2.5 py-1.5 text-left text-xs transition-colors ${
               tab === "about"
@@ -208,7 +238,53 @@ function Settings({ onClose }: SettingsProps) {
           {tab === "providers" && <ProvidersTab />}
           {tab === "models" && <ModelsTab />}
           {tab === "studio" && <StudioTab />}
+          {tab === "appearance" && <AppearanceTab />}
           {tab === "about" && <AboutTab appVersion={appVersion} />}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// Appearance Tab
+// ═══════════════════════════════════════════════════════════════════════
+
+function AppearanceTab() {
+  const { dark, toggle } = useDarkMode();
+
+  return (
+    <div className="mx-auto w-full max-w-md px-6 py-8">
+      <h4 className="font-serif text-lg italic text-foreground">Appearance</h4>
+      <p className="mt-1 text-xs text-muted-foreground">Customize how BloxBot looks.</p>
+
+      <div className="mt-6">
+        <div className="mb-1.5 px-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+          Theme
+        </div>
+        <div className="rounded-lg border bg-card p-3.5">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="text-sm font-medium">Dark mode</span>
+              <p className="mt-0.5 text-[11px] text-muted-foreground">
+                {dark ? "Using dark theme" : "Using light theme"}
+              </p>
+            </div>
+            <button
+              onClick={toggle}
+              className={`relative inline-flex h-5 w-9 shrink-0 items-center rounded-full transition-colors ${
+                dark ? "bg-foreground" : "bg-border"
+              }`}
+              role="switch"
+              aria-checked={dark}
+            >
+              <span
+                className={`inline-block h-3.5 w-3.5 rounded-full bg-background transition-transform ${
+                  dark ? "translate-x-4" : "translate-x-0.5"
+                }`}
+              />
+            </button>
+          </div>
         </div>
       </div>
     </div>
